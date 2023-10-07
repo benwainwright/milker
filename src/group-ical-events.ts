@@ -21,8 +21,11 @@ export const groupIcalEvents = (calendar: {
     return accum;
   }, {});
 
-  return Object.values(dayTable).map((events) => ({
-    day: DateTime.fromJSDate(events[0].start!).startOf("day"),
-    events,
-  }));
+  return Object.values(dayTable)
+    .map((events) => ({
+      day: DateTime.fromJSDate(events[0].start!).startOf("day"),
+      events,
+    }))
+    .slice()
+    .sort((a, b) => (a.day > b.day ? 1 : -1));
 };
