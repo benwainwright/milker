@@ -1,8 +1,23 @@
 import { PlanningRule } from "../rule";
 
-export const isCompleted: PlanningRule = {
-  name: "is-completed",
-  canScheduleTask: (day, proposedTask) => {
-    return !Boolean(proposedTask.completed)
-  }
-}
+const name = "is-completed";
+
+export const isCompleted: PlanningRule<"is-completed"> = {
+  name,
+  canScheduleTask: (_day, proposedTask) => {
+    const result = !proposedTask.completed;
+
+    if (result) {
+      return {
+        result: "success",
+        name,
+      };
+    }
+
+    return {
+      name,
+      result: "failed",
+      message: "task not scheduled as it was completed",
+    };
+  },
+};
