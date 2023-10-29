@@ -14,6 +14,7 @@
     "rtm-js": "^1.0.2"
   },
   "scripts": {
+    "types": "tsc --noEmit",
     "test": "vitest --coverage",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui"

@@ -4,5 +4,6 @@
   "ts-node": {
     "files": true
   },
-  "files": ["src/types/rtm-js.d.ts"]
+  "files": ["src/package-types/rtm-js.d.ts"],
+  "include": ["src/**/*.ts"]
 }

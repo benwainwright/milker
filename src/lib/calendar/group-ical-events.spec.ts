@@ -1,7 +1,7 @@
-import { groupIcalEvents } from "./group-ical-events";
 import ical from "ical";
 import { DateTime } from "luxon";
 import path from "path";
+import { groupIcalEvents } from "./group-ical-events";
 
 const FIXTURES_DIR = path.join(__dirname, "..", "fixtures");
 

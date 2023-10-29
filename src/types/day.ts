@@ -3,5 +3,5 @@ import { DateTime } from "luxon";
 
 export interface Day {
   day: DateTime;
-  events: CalendarComponent;
+  events: CalendarComponent[];
 }

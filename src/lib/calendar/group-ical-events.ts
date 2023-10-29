@@ -1,7 +1,7 @@
 import { CalendarComponent } from "ical";
-import { Day } from "./day";
 import { DateTime } from "luxon";
 import { isAllDayEvent } from "./is-all-day-event";
+import { Day } from "../../types/day";
 
 export const groupIcalEvents = (calendar: {
   [key: string]: CalendarComponent;

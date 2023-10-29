@@ -8,8 +8,8 @@ import { cwd } from "process";
 import RememberTheMilk from "rtm-js";
 
 import "dotenv/config";
-import { getEnv } from "./get-env";
-import { getTasks } from "./rtm";
+import { getEnv } from "./lib/core/get-env";
+import { getTasks } from "./lib/rtm/rtm";
 
 const BEN_ICAL =
   "https://calendar.google.com/calendar/ical/e50f1bef70739f9f0a825126a7f8fed4f8a26d134060969f762330608667d647%40group.calendar.google.com/private-0fad6b4bf9797ac58d4e41f94aa1516c/basic.ics";
