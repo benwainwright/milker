@@ -22,62 +22,62 @@ export interface TaskParams {
 }
 
 export class Task {
-  constructor(private rawTask: RtmTask | TaskParams) {}
+  constructor(private data: RtmTask | TaskParams) {}
 
   public get id(): string {
-    return this.rawTask.id;
+    return this.data.id;
   }
 
   public get due(): DateTime | undefined {
-    if (!this.rawTask.due) {
+    if (!this.data.due) {
       return undefined;
     }
 
-    return DateTime.isDateTime(this.rawTask.due)
-      ? this.rawTask.due
-      : DateTime.fromISO(this.rawTask.due);
+    return DateTime.isDateTime(this.data.due)
+      ? this.data.due
+      : DateTime.fromISO(this.data.due);
   }
 
   public get added(): DateTime | undefined {
-    if (!this.rawTask.added) {
+    if (!this.data.added) {
       return undefined;
     }
-    return DateTime.isDateTime(this.rawTask.added)
-      ? this.rawTask.added
-      : DateTime.fromISO(this.rawTask.added);
+    return DateTime.isDateTime(this.data.added)
+      ? this.data.added
+      : DateTime.fromISO(this.data.added);
   }
 
   public get completed(): DateTime | undefined {
-    if (!this.rawTask.completed) {
+    if (!this.data.completed) {
       return undefined;
     }
-    return DateTime.isDateTime(this.rawTask.completed)
-      ? this.rawTask.completed
-      : DateTime.fromISO(this.rawTask.completed);
+    return DateTime.isDateTime(this.data.completed)
+      ? this.data.completed
+      : DateTime.fromISO(this.data.completed);
   }
 
   public get deleted(): DateTime | undefined {
-    if (!this.rawTask.deleted) {
+    if (!this.data.deleted) {
       return undefined;
     }
-    return DateTime.isDateTime(this.rawTask.deleted)
-      ? this.rawTask.deleted
-      : DateTime.fromISO(this.rawTask.deleted);
+    return DateTime.isDateTime(this.data.deleted)
+      ? this.data.deleted
+      : DateTime.fromISO(this.data.deleted);
   }
 
   public get estimate(): string | undefined {
-    if (!this.rawTask.estimate) {
+    if (!this.data.estimate) {
       return undefined;
     }
-    return this.rawTask.estimate;
+    return this.data.estimate;
   }
 
   public get postponed(): number {
-    return Number(this.rawTask.postponed);
+    return Number(this.data.postponed);
   }
 
   public get priority(): TaskPriority | undefined {
-    const priority = this.rawTask.priority;
+    const priority = this.data.priority;
     if (!priority) {
       return undefined;
     }
@@ -87,7 +87,7 @@ export class Task {
       return priority as TaskPriority;
     }
 
-    const mapping = priorityMapping[Number(this.rawTask.priority) as 1 | 2 | 3];
+    const mapping = priorityMapping[Number(this.data.priority) as 1 | 2 | 3];
 
     return mapping;
   }
