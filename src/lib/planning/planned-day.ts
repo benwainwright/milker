@@ -14,9 +14,10 @@ export class PlannedDay {
   }
 
   public tryToScheduleTask(task: Task): boolean {
-    const ruleFailureFound = this.rules.some(
-      (rule) => !rule.canScheduleTask(this, task),
-    );
+    const ruleFailureFound = this.rules.some((rule) => {
+      const { result } = rule.canScheduleTask(this, task);
+      return result === "failed";
+    });
 
     if (!ruleFailureFound) {
       this.currentlyScheduledTasks.push(task);

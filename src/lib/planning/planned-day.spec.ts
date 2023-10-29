@@ -17,10 +17,12 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
   const proposedTask = mock<Task>();
 
   const ruleOne: PlanningRule = {
+    name: "test",
     canScheduleTask: vi.fn(),
   };
 
   const ruleTwo: PlanningRule = {
+    name: "test",
     canScheduleTask: vi.fn(),
   };
 
@@ -30,11 +32,11 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   when(ruleOne.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue(true);
+    .mockReturnValue({ result: "success" });
 
   when(ruleTwo.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue(true);
+    .mockReturnValue({ result: "success" });
 
   const result = day.tryToScheduleTask(proposedTask);
   expect(result).toBeTruthy();
@@ -51,10 +53,12 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
   const proposedTask = mock<Task>();
 
   const ruleOne: PlanningRule = {
+    name: "test",
     canScheduleTask: vi.fn(),
   };
 
   const ruleTwo: PlanningRule = {
+    name: "test",
     canScheduleTask: vi.fn(),
   };
 
@@ -64,13 +68,13 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   when(ruleOne.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue(true);
+    .mockReturnValue({ result: "success" });
 
   when(ruleTwo.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue(false);
+    .mockReturnValue({ result: "failed", message: "Failed for reason" });
 
   const result = day.tryToScheduleTask(proposedTask);
-  expect(result).toEqual(false);
   expect(day.scheduledTasks).toHaveLength(0);
+  expect(result).toEqual(false);
 });

@@ -13,7 +13,7 @@ export class PlanningEngine {
       if (!a.due || !b.due) {
         return 0;
       }
-      return a.due.startOf("day") > b.due.startOf("day") ? 1 : -1;
+      return a.due > b.due ? 1 : -1;
     });
 
     const unscheduledTasks = this.days.reduce<Task[]>(
