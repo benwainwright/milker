@@ -8,6 +8,7 @@
   "dependencies": {
     "@types/mock-fs": "^4.13.3",
     "@types/prompts": "^2.4.7",
+    "@vitest/ui": "^0.34.6",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "fs-extra": "^11.1.1",
@@ -27,7 +28,7 @@
     "types": "tsc --noEmit",
     "test": "vitest --coverage",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --watch --ui"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",

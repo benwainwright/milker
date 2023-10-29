@@ -5,6 +5,16 @@
     "files": true,
     "esm": true
   },
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["ES2023"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "$schema": "https://json.schemastore.org/tsconfig",
   "files": ["src/package-types/rtm-js.d.ts"],
   "include": ["src/**/*.ts"]
 }

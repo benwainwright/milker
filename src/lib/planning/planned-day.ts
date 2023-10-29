@@ -1,25 +1,21 @@
-import { CalendarComponent } from "ical";
-import { DateTime } from "luxon";
 import { PlanningRule } from "./rule";
-import { Task } from "../lib/rtm/task";
+import { Task } from "../rtm/task";
+import { Day } from "../../types/day";
 
-export class Day {
+export class PlannedDay {
   private currentlyScheduledTasks: Task[] = [];
   constructor(
-    private day: DateTime,
-    private events: CalendarComponent[],
+    public readonly rawDay: Day,
     private rules: PlanningRule[],
   ) {}
 
+  public isAfter(other: PlannedDay): boolean {
+    return this.rawDay.day > other.rawDay.day;
+  }
+
   public tryToScheduleTask(task: Task): boolean {
     const ruleFailureFound = this.rules.some(
-      (rule) =>
-        !rule.canScheduleTask(
-          this.day,
-          this.events,
-          this.currentlyScheduledTasks,
-          task,
-        ),
+      (rule) => !rule.canScheduleTask(this, task),
     );
 
     if (!ruleFailureFound) {

@@ -1,12 +1,6 @@
-import { CalendarComponent } from "ical";
-import { Task } from "../lib/rtm/task";
-import { DateTime } from "luxon";
+import { Task } from "../rtm/task";
+import { PlannedDay } from "./planned-day";
 
 export interface PlanningRule {
-  canScheduleTask: (
-    day: DateTime,
-    events: CalendarComponent[],
-    currentTasks: Task[],
-    proposedTask: Task,
-  ) => boolean;
+  canScheduleTask: (day: PlannedDay, proposedTask: Task) => boolean;
 }
