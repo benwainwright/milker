@@ -7,6 +7,7 @@ export const STORAGE_KEY = "milk-manager-token-storage";
 
 export class RtmClient {
   private client: RememberTheMilkApi;
+  private token: string | undefined;
   constructor(
     private storage: AppStorage,
     private tokenRequester: TokenRequester,
@@ -17,16 +18,27 @@ export class RtmClient {
     this.client = new RememberTheMilk(apiKey, apiSecret, perms);
   }
 
-  private async getToken(): Promise<string> {
-    return await this.tokenRequester.requestToken(
-      this.apiKey,
-      this.apiSecret,
-      this.perms,
-    );
+  private async getAndStoreToken(): Promise<string> {
+    if (!this.token) {
+      const storedToken = await this.storage.get(STORAGE_KEY);
+
+      this.token =
+        storedToken ??
+        (await this.tokenRequester.requestToken(
+          this.apiKey,
+          this.apiSecret,
+          this.perms,
+        ));
+
+      if (!storedToken) {
+        await this.storage.set(STORAGE_KEY, this.token);
+      }
+    }
+    return this.token;
   }
 
   public async getAllTasks() {
-    const token = await this.getToken();
+    const token = await this.getAndStoreToken();
 
     const {
       rsp: {

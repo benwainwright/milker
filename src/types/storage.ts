@@ -1,6 +1,6 @@
 export interface AppStorage {
-  get: (key: string) => string | undefined;
-  set: (key: string) => void;
+  get: (key: string) => Promise<string | undefined>;
+  set: (key: string, value: string) => Promise<void>;
 }
 
 export interface TokenRequester {
