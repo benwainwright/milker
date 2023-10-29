@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import path from "path";
 import { groupIcalEvents } from "./group-ical-events";
 
-const FIXTURES_DIR = path.join(__dirname, "..", "fixtures");
+const FIXTURES_DIR = path.join(__dirname, "..", "..", "..", "fixtures");
 
 describe("group ical events", () => {
   it("Creates the right number of groups", () => {

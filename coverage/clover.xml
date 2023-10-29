@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1698578583767" clover="3.2.0">
-  <project timestamp="1698578583767" name="All files">
-    <metrics statements="51" coveredstatements="23" conditionals="23" coveredconditionals="15" methods="15" coveredmethods="7" elements="89" coveredelements="45" complexity="0" loc="51" ncloc="51" packages="2" files="7" classes="7"/>
+<coverage generated="1698579302695" clover="3.2.0">
+  <project timestamp="1698579302695" name="All files">
+    <metrics statements="51" coveredstatements="23" conditionals="23" coveredconditionals="15" methods="15" coveredmethods="7" elements="89" coveredelements="45" complexity="0" loc="51" ncloc="51" packages="4" files="7" classes="7"/>
     <package name="src">
-      <metrics statements="45" coveredstatements="20" conditionals="23" coveredconditionals="15" methods="11" coveredmethods="5"/>
-      <file name="get-env.ts" path="/Users/benwainwright1/repos/milk/src/get-env.ts">
-        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
+      <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="run.ts" path="/Users/benwainwright1/repos/milk/src/run.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
       </file>
-      <file name="group-ical-events.ts" path="/Users/benwainwright1/repos/milk/src/group-ical-events.ts">
+    </package>
+    <package name="src.lib.calendar">
+      <metrics statements="22" coveredstatements="20" conditionals="19" coveredconditionals="15" methods="5" coveredmethods="5"/>
+      <file name="group-ical-events.ts" path="/Users/benwainwright1/repos/milk/src/lib/calendar/group-ical-events.ts">
         <metrics statements="13" coveredstatements="12" conditionals="8" coveredconditionals="6" methods="4" coveredmethods="4"/>
         <line num="6" count="1" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -28,7 +34,7 @@
         <line num="30" count="6" type="stmt"/>
         <line num="35" count="3" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="is-all-day-event.ts" path="/Users/benwainwright1/repos/milk/src/is-all-day-event.ts">
+      <file name="is-all-day-event.ts" path="/Users/benwainwright1/repos/milk/src/lib/calendar/is-all-day-event.ts">
         <metrics statements="9" coveredstatements="8" conditionals="11" coveredconditionals="9" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="12" type="cond" truecount="3" falsecount="1"/>
@@ -40,7 +46,33 @@
         <line num="25" count="3" type="stmt"/>
         <line num="27" count="9" type="stmt"/>
       </file>
-      <file name="rtm.ts" path="/Users/benwainwright1/repos/milk/src/rtm.ts">
+    </package>
+    <package name="src.lib.core">
+      <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="get-env.ts" path="/Users/benwainwright1/repos/milk/src/lib/core/get-env.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.lib.rtm">
+      <metrics statements="16" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="2"/>
+      <file name="Requester.ts" path="/Users/benwainwright1/repos/milk/src/lib/rtm/Requester.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="request.ts" path="/Users/benwainwright1/repos/milk/src/lib/rtm/request.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="rtm.ts" path="/Users/benwainwright1/repos/milk/src/lib/rtm/rtm.ts">
         <metrics statements="10" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -52,32 +84,6 @@
         <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="15" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-      </file>
-      <file name="run.ts" path="/Users/benwainwright1/repos/milk/src/run.ts">
-        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.rtm">
-      <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
-      <file name="Requester.ts" path="/Users/benwainwright1/repos/milk/src/rtm/Requester.ts">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-      </file>
-      <file name="request.ts" path="/Users/benwainwright1/repos/milk/src/rtm/request.ts">
-        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
       </file>
     </package>
   </project>
