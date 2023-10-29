@@ -1,19 +1,25 @@
 {
   "name": "milk",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "author": "Ben Wainwright <ben.wainwright@cinch.co.uk>",
   "license": "MIT",
   "dependencies": {
+    "@types/prompts": "^2.4.7",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "ical": "^0.8.0",
     "js-file-downloader": "^1.1.25",
     "luxon": "^3.4.3",
     "nodejs-file-downloader": "^4.12.1",
-    "rtm-js": "^1.0.2"
+    "open": "^9.1.0",
+    "prompts": "^2.4.2",
+    "rtm-js": "^1.0.2",
+    "vite-node": "^0.34.6"
   },
   "scripts": {
+    "start": "vite-node src/run.ts",
     "lint": "eslint .",
     "types": "tsc --noEmit",
     "test": "vitest --coverage",

@@ -4,5 +4,9 @@ export interface AppStorage {
 }
 
 export interface TokenRequester {
-  requestToken: (apiKey: string, apiSecret: string) => Promise<string>;
+  requestToken: (
+    apiKey: string,
+    apiSecret: string,
+    perms: string,
+  ) => Promise<string>;
 }

@@ -2,7 +2,8 @@
   "extends": "@tsconfig/recommended/tsconfig.json",
 
   "ts-node": {
-    "files": true
+    "files": true,
+    "esm": true
   },
   "files": ["src/package-types/rtm-js.d.ts"],
   "include": ["src/**/*.ts"]
