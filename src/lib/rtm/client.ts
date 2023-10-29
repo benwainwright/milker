@@ -48,6 +48,7 @@ export class RtmClient {
     });
 
     return list
+      .filter((theList) => Boolean(theList.taskseries))
       .flatMap((theList) => theList.taskseries)
       .map((rawTaskSeries) => new TaskSeries(rawTaskSeries));
   }

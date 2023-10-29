@@ -40,9 +40,16 @@ export class TaskSeries {
   }
 
   public get tasks(): Task[] {
-    if ("task" in this.data) {
+    const isRawTask = (data: typeof this.data): data is RtmTaskSeries => {
+      if (!data) {
+        return false;
+      }
+      return Object.prototype.hasOwnProperty.call(data, "task");
+    };
+    console.log({ data: this.data });
+    if (isRawTask(this.data)) {
       // TODO test to test parent linking
-      return this.data.task.map((task) => new Task(task, this));
+      return this.data.task?.map((task) => new Task(task, this)) ?? [];
     }
     return this.data.tasks;
   }

@@ -6,6 +6,7 @@ import { FlatFileJsonStorage } from "./lib/rtm/flat-file-json-storage";
 import { getGroupedEventsFromIcal } from "./lib/calendar/get-grouped-events-from-ical";
 import { PlanningEngine } from "./lib/planning/planning-engine";
 import { PlannedDay } from "./lib/planning/planned-day";
+import { initialisePlanningRules } from "./lib/core/initialise-rules";
 
 const run = async () => {
   console.log("Downloading ical");
@@ -22,10 +23,22 @@ const run = async () => {
 
   const tasks = await client.getAllTasks();
 
-  console.log("Reallocating tasks");
-  const engine = new PlanningEngine(days.map((day) => new PlannedDay(day, [])));
+  console.log("initialising Planning Engine");
+  const rules = initialisePlanningRules();
 
-  engine.allocateTasks(tasks.flatMap((task) => task.tasks));
+  const engine = new PlanningEngine(
+    days.map((day) => new PlannedDay(day, rules)),
+  );
+
+  console.log("Reallocating tasks");
+
+  const result = engine.allocateTasks(
+    tasks.flatMap((task) => {
+      console.log("one");
+      return task.tasks;
+    }),
+  );
+  console.log(result);
 };
 
 run().catch((error) => console.log(error));

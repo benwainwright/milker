@@ -48,7 +48,7 @@ declare module "rtm-js" {
     tags: never[];
     participants: never[];
     notes: never[];
-    task: RtmTask[];
+    task: RtmTask[] | undefined;
   }
 
   interface RtmList {
