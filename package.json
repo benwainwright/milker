@@ -30,6 +30,7 @@
     "@typescript-eslint/parser": "^6.9.0",
     "@vitest/coverage-istanbul": "^0.34.6",
     "eslint": "^8.52.0",
+    "msw": "^2.0.1",
     "nock": "^13.3.3",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
