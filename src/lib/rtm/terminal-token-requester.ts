@@ -1,4 +1,4 @@
-import RememberTheMilk, { RememberTheMilkApi, RtmSuccess } from "rtm-js";
+import RememberTheMilk from "rtm-js";
 import { TokenRequester } from "../../types/storage";
 import open from "open";
 import prompts from "prompts";
