@@ -55,7 +55,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     due: DateTime.fromISO("2012-04-19T00:00:00Z"),
   });
 
-  const ruleOne = mock<PlanningRule>();
+  const ruleOne = mock<PlanningRule<"foo">>();
 
   const rules = [ruleOne];
 
@@ -68,229 +68,331 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
 
   when(ruleOne.canScheduleTask)
     .calledWith(dayOne, taskOne)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
 
   when(ruleOne.canScheduleTask)
     .calledWith(dayOne, taskOne)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayOne, taskTwo)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayOne, taskThree)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayOne, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayOne, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayOne, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayOne, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayOne, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(dayOne, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayOne, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayOne, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayOne, taskSeven).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayOne, taskEight).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
 
   const mockDayTwo = mock<Day>();
   const dayTwo = new PlannedDay(mockDayTwo, rules);
 
   when(ruleOne.canScheduleTask)
     .calledWith(dayTwo, taskOne)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayTwo, taskTwo)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayTwo, taskThree)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayTwo, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayTwo, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayTwo, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayTwo, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayTwo, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(dayTwo, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayTwo, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayTwo, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayTwo, taskSeven).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayTwo, taskEight).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
 
   const mockDayThree = mock<Day>();
   const dayThree = new PlannedDay(mockDayThree, rules);
 
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayThree, taskOne)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayThree, taskTwo)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleOne.canScheduleTask).calledWith(dayThree, taskOne).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayThree, taskTwo).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(dayThree, taskThree)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayThree, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayThree, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayThree, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
+  when(ruleOne.canScheduleTask).calledWith(dayThree, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayThree, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayThree, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(dayThree, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
   when(ruleOne.canScheduleTask)
     .calledWith(dayThree, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
 
   const mockDayFour = mock<Day>();
   const dayFour = new PlannedDay(mockDayFour, rules);
 
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskOne)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskTwo)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskOne).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskTwo).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(dayFour, taskThree)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFour, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskSeven).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFour, taskEight).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
 
   const mockDayFive = mock<Day>();
   const dayFive = new PlannedDay(mockDayFive, rules);
 
   when(ruleOne.canScheduleTask)
     .calledWith(dayFive, taskOne)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskTwo)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskThree)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskTwo).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskThree).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(dayFive, taskSix)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
 
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayFive, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskSeven).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(dayFive, taskEight).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
 
   const mockDaySix = mock<Day>();
   const daySix = new PlannedDay(mockDaySix, rules);
 
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskOne)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskOne).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(daySix, taskTwo)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskThree)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskFour)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskThree).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskFour).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(daySix, taskFive)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskSeven)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySix, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskSeven).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(daySix, taskEight).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
 
   const mockDaySeven = mock<Day>();
   const daySeven = new PlannedDay(mockDaySeven, rules);
 
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySeven, taskOne)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySeven, taskTwo)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleOne.canScheduleTask).calledWith(daySeven, taskOne).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(daySeven, taskTwo).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(daySeven, taskThree)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
   when(ruleOne.canScheduleTask)
     .calledWith(daySeven, taskFour)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySeven, taskFive)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(daySeven, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(daySeven, taskFive).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
+  when(ruleOne.canScheduleTask).calledWith(daySeven, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(daySeven, taskSeven)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(daySeven, taskEight)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
 
   const mockDayEight = mock<Day>();
   const dayEight = new PlannedDay(mockDayEight, rules);
 
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskOne)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskTwo)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskThree)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({
+      result: "failed",
+      message: "Failed for reason",
+      name: "foo",
+    });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskFour)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskFive)
-    .mockReturnValue({ result: "success" });
-  when(ruleOne.canScheduleTask)
-    .calledWith(dayEight, taskSix)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+    .mockReturnValue({ result: "success", name: "foo" });
+  when(ruleOne.canScheduleTask).calledWith(dayEight, taskSix).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "foo",
+  });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskSeven)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask)
     .calledWith(dayEight, taskEight)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "foo" });
 
   const days = [
     dayOne,

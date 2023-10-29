@@ -1,18 +1,20 @@
 import { Task } from "../rtm/task";
 import { PlannedDay } from "./planned-day";
 
-interface RuleSuccess {
+interface RuleSuccess<N extends string> {
   result: "success";
+  name: N;
 }
 
-interface RuleFailed {
+interface RuleFailed<N extends string> {
   result: "failed";
   message: string;
+  name: N;
 }
 
-type RuleResult = RuleSuccess | RuleFailed;
+type RuleResult<N extends string> = RuleSuccess<N> | RuleFailed<N>;
 
-export interface PlanningRule {
-  name: string;
-  canScheduleTask: (day: PlannedDay, proposedTask: Task) => RuleResult;
+export interface PlanningRule<N extends string> {
+  name: N;
+  canScheduleTask: (day: PlannedDay, proposedTask: Task) => RuleResult<N>;
 }

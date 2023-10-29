@@ -16,13 +16,13 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   const proposedTask = mock<Task>();
 
-  const ruleOne: PlanningRule = {
+  const ruleOne: PlanningRule<"test"> = {
     name: "test",
     canScheduleTask: vi.fn(),
   };
 
-  const ruleTwo: PlanningRule = {
-    name: "test",
+  const ruleTwo: PlanningRule<"test-two"> = {
+    name: "test-two",
     canScheduleTask: vi.fn(),
   };
 
@@ -32,11 +32,11 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   when(ruleOne.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "test" });
 
   when(ruleTwo.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "test-two" });
 
   const result = day.tryToScheduleTask(proposedTask);
   expect(result).toBeTruthy();
@@ -52,13 +52,13 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   const proposedTask = mock<Task>();
 
-  const ruleOne: PlanningRule = {
+  const ruleOne: PlanningRule<"test"> = {
     name: "test",
     canScheduleTask: vi.fn(),
   };
 
-  const ruleTwo: PlanningRule = {
-    name: "test",
+  const ruleTwo: PlanningRule<"test-two"> = {
+    name: "test-two",
     canScheduleTask: vi.fn(),
   };
 
@@ -68,11 +68,13 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
 
   when(ruleOne.canScheduleTask)
     .calledWith(day, proposedTask)
-    .mockReturnValue({ result: "success" });
+    .mockReturnValue({ result: "success", name: "test" });
 
-  when(ruleTwo.canScheduleTask)
-    .calledWith(day, proposedTask)
-    .mockReturnValue({ result: "failed", message: "Failed for reason" });
+  when(ruleTwo.canScheduleTask).calledWith(day, proposedTask).mockReturnValue({
+    result: "failed",
+    message: "Failed for reason",
+    name: "test-two",
+  });
 
   const result = day.tryToScheduleTask(proposedTask);
   expect(day.scheduledTasks).toHaveLength(0);
