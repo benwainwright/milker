@@ -55,6 +55,27 @@ it("throws an error if the error handler is called", async () => {
   ).rejects.toThrow(theError);
 });
 
+it("throws an error if both arguments return undefined", async () => {
+  const apiKey = "key";
+  const client = mock<RememberTheMilkApi>();
+
+  when(vi.mocked(client).get)
+    .calledWith("rtm.auth.getFrob", { api_key: apiKey }, expect.anything())
+    .mockImplementation((_method, _options, callback) => {
+      callback(undefined, undefined);
+    });
+
+  await expect(
+    rtmGetPromisified(client, "rtm.auth.getFrob", {
+      api_key: apiKey,
+    }),
+  ).rejects.toThrow(
+    new Error(
+      "rtm.js callback returned an invalid response! (both arguments were undefined)",
+    ),
+  );
+});
+
 it("throws an error if the request returns an error", async () => {
   const apiKey = "key";
   const client = mock<RememberTheMilkApi>();

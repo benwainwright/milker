@@ -24,6 +24,11 @@ export const rtmGetPromisified = <M extends keyof RtmApiMapping>(
           accept(responseObject);
         }
       }
+      reject(
+        new Error(
+          "rtm.js callback returned an invalid response! (both arguments were undefined)",
+        ),
+      );
     });
   });
 };
