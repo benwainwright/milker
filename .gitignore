@@ -2,3 +2,4 @@ node_modules
 coverage
 coverage
 yarn-error.log
+token.json
