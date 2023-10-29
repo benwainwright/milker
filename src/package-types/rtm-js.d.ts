@@ -25,7 +25,7 @@ declare module "rtm-js" {
     fullname: string;
   }
 
-  interface RtmTask {
+  export interface RtmTask {
     id: string;
     due: string;
     has_due_time: string;
