@@ -4,9 +4,8 @@ export default defineConfig({
   test: {
     globals: true,
     coverage: {
-
       all: true,
-      include: ["src/**/*.ts"],
+      include: ["src/lib/**/*.ts"],
       provider: "istanbul",
     },
   },

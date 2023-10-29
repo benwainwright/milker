@@ -8,9 +8,7 @@ export class TerminalTokenRequester implements TokenRequester {
   public async requestToken(apiKey: string, apiSecret: string, perms: string) {
     const client = new RememberTheMilk(apiKey, apiSecret, perms);
 
-    const {
-      rsp: { frob },
-    } = await rtmGetPromisified(client, "rtm.auth.getFrob", {
+    const { frob } = await rtmGetPromisified(client, "rtm.auth.getFrob", {
       api_key: apiKey,
     });
 
@@ -25,9 +23,7 @@ export class TerminalTokenRequester implements TokenRequester {
     });
 
     const {
-      rsp: {
-        auth: { token },
-      },
+      auth: { token },
     } = await rtmGetPromisified(client, "rtm.auth.getToken", {
       frob,
       api_key: apiKey,

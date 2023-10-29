@@ -103,9 +103,14 @@ declare module "rtm-js" {
     auth_token?: string;
   }
 
+  type RtmResponse<M extends keyof RtmApiMapping> =
+    | RtmSuccess<M>
+    | RtmFail
+    | undefined;
+
   type RtmCallback<M extends keyof RtmApiMapping> = (
-    response: RtmSuccess<M>,
-    error: RtmFail | undefined,
+    response: RtmResponse<M>,
+    error: RtmFail | undefined | Error,
   ) => void;
 
   type ApiOptions = <M extends keyof RtmApiMapping>(

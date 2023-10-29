@@ -2,7 +2,6 @@
 
 import "dotenv/config";
 import { RtmClient } from "./lib/rtm/client";
-import { AppStorage } from "./types/storage";
 import { TerminalTokenRequester } from "./lib/rtm/terminal-token-requester";
 import { getEnv } from "./lib/core/get-env";
 import { FlatFileJsonStorage } from "./lib/rtm/flat-file-json-storage";

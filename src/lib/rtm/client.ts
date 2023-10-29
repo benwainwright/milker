@@ -41,9 +41,7 @@ export class RtmClient {
     const token = await this.getAndStoreToken();
 
     const {
-      rsp: {
-        tasks: { list },
-      },
+      tasks: { list },
     } = await rtmGetPromisified(this.client, "rtm.tasks.getList", {
       api_key: this.apiKey,
       auth_token: token,
