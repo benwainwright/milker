@@ -1,5 +1,5 @@
 import { getEnv } from "../core/get-env";
-import RememberTheMilk from "rtm-js";
+import { RememberTheMilk } from "rtm-js";
 
 const milkKey = getEnv("MILK_API_KEY");
 const milkSecret = getEnv("MILK_SHARED_SECRET");
