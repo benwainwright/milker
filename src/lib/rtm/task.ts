@@ -1,10 +1,12 @@
 import { DateTime } from "luxon";
 import { RtmTask } from "rtm-js";
+import { TaskSeries } from "./task-series";
 
 const priorityMapping = {
   1: "High",
   2: "Medium",
   3: "Low",
+  N: "None",
 } as const;
 
 export type TaskPriority =
@@ -22,7 +24,10 @@ export interface TaskParams {
 }
 
 export class Task {
-  constructor(private data: RtmTask | TaskParams) {}
+  constructor(
+    private data: RtmTask | TaskParams,
+    public readonly parent: TaskSeries,
+  ) {}
 
   public get id(): string {
     return this.data.id;
@@ -87,7 +92,8 @@ export class Task {
       return priority as TaskPriority;
     }
 
-    const mapping = priorityMapping[Number(this.data.priority) as 1 | 2 | 3];
+    const mapping =
+      priorityMapping[this.data.priority as "1" | "2" | "3" | "N"];
 
     return mapping;
   }

@@ -41,8 +41,8 @@ export class TaskSeries {
 
   public get tasks(): Task[] {
     if ("task" in this.data) {
-      console.log("foo");
-      return this.data.task.map((task) => new Task(task));
+      // TODO test to test parent linking
+      return this.data.task.map((task) => new Task(task, this));
     }
     return this.data.tasks;
   }

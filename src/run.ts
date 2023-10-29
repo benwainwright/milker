@@ -34,7 +34,7 @@ const run = async () => {
   const client = new RtmClient(storage, tokenRequester, key, secret, "delete");
 
   const tasks = await client.getAllTasks();
-  console.log(tasks);
+  console.log(JSON.stringify(tasks[0], null, 2));
 };
 
 run().catch((error) => console.log(error));

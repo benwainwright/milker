@@ -70,22 +70,6 @@ test("processess individual tasks with the task constructor", () => {
   const mockTaskFour = mock<Task>();
   const mockTaskFive = mock<Task>();
 
-  when(vi.mocked(Task))
-    .calledWith(mockRawTaskOne)
-    .mockReturnValue(mock(mockTaskOne));
-  when(vi.mocked(Task))
-    .calledWith(mockRawTaskTwo)
-    .mockReturnValue(mock(mockTaskTwo));
-  when(vi.mocked(Task))
-    .calledWith(mockRawTaskThree)
-    .mockReturnValue(mock(mockTaskThree));
-  when(vi.mocked(Task))
-    .calledWith(mockRawTaskFour)
-    .mockReturnValue(mock(mockTaskFour));
-  when(vi.mocked(Task))
-    .calledWith(mockRawTaskFive)
-    .mockReturnValue(mock(mockTaskFive));
-
   const mockTaskSeries = mock<RtmTaskSeries>({
     id: "1",
     task: [
@@ -98,6 +82,22 @@ test("processess individual tasks with the task constructor", () => {
   });
 
   const taskSeries = new TaskSeries(mockTaskSeries);
+
+  when(vi.mocked(Task))
+    .calledWith(mockRawTaskOne, taskSeries)
+    .mockReturnValue(mock(mockTaskOne));
+  when(vi.mocked(Task))
+    .calledWith(mockRawTaskTwo, taskSeries)
+    .mockReturnValue(mock(mockTaskTwo));
+  when(vi.mocked(Task))
+    .calledWith(mockRawTaskThree, taskSeries)
+    .mockReturnValue(mock(mockTaskThree));
+  when(vi.mocked(Task))
+    .calledWith(mockRawTaskFour, taskSeries)
+    .mockReturnValue(mock(mockTaskFour));
+  when(vi.mocked(Task))
+    .calledWith(mockRawTaskFive, taskSeries)
+    .mockReturnValue(mock(mockTaskFive));
 
   expect(taskSeries.tasks).toEqual([
     mockTaskOne,

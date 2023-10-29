@@ -30,7 +30,7 @@ test.each`
     const rawTask = mock<RtmTask>({
       [oldKey]: rawValue,
     });
-    const task = new Task(rawTask);
+    const task = new Task(rawTask, mock());
     const property = (task as { [key: string]: unknown } & Task)[newKey];
     expect(property).toStrictEqual(value);
   },
@@ -52,7 +52,7 @@ test.each`
       id: "1",
       [key]: value,
     });
-    const task = new Task(rawTask);
+    const task = new Task(rawTask, mock());
     const property = (task as { [key: string]: unknown } & Task)[key];
     expect(task.id).toEqual("1");
     expect(property).toBeDefined();
