@@ -8,6 +8,15 @@ interface PlanningResult {
 export class PlanningEngine {
   public constructor(public readonly days: PlannedDay[]) {}
 
+  public static makeTasklistReducerForDay(day: PlannedDay) {
+    return (remainingTasks: Task[], currentTask: Task) => {
+      if (day.tryToScheduleTask(currentTask)) {
+        return remainingTasks;
+      }
+      return [...remainingTasks, currentTask];
+    };
+  }
+
   public allocateTasks(tasks: Task[]): PlanningResult {
     const sortedTasks = tasks.slice().toSorted((a, b) => {
       if (!a.due || !b.due) {
@@ -19,12 +28,7 @@ export class PlanningEngine {
     const unscheduledTasks = this.days.reduce<Task[]>(
       (unscheduledTasks, day) => {
         return unscheduledTasks.reduce<Task[]>(
-          (remainingTasks, currentTask) => {
-            if (day.tryToScheduleTask(currentTask)) {
-              return remainingTasks;
-            }
-            return [...remainingTasks, currentTask];
-          },
+          PlanningEngine.makeTasklistReducerForDay(day),
           [],
         );
       },
