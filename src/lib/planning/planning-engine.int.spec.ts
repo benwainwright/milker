@@ -14,6 +14,11 @@ beforeEach(() => {
   vi.resetAllMocks();
 });
 
+test.todo(
+  "planning engine doesnt ignore days that weren't in the original day list",
+  () => {},
+);
+
 test("allocate tasks continues to try scheduling unto all the tasks are exhausted, then returns a result indicating no tasks are unallocated", () => {
   // One
   const taskTwo = mock<Task>({
@@ -82,26 +87,31 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayOne, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayOne, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask).calledWith(dayOne, taskSix).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask).calledWith(dayOne, taskSeven).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayOne, taskEight).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
 
@@ -120,25 +130,30 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayTwo, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayTwo, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayTwo, taskSix).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayTwo, taskSeven).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayTwo, taskEight).mockReturnValue({
     result: "failed",
+    stopProcessing: false,
     message: "Failed for reason",
     name: "foo",
   });
@@ -149,11 +164,13 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayThree, taskOne).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayThree, taskTwo).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -161,21 +178,25 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({
       result: "failed",
       message: "Failed for reason",
+      stopProcessing: false,
       name: "foo",
     });
   when(ruleOne.canScheduleTask).calledWith(dayThree, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask).calledWith(dayThree, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask).calledWith(dayThree, taskSix).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -183,6 +204,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({
       result: "failed",
       message: "Failed for reason",
+      stopProcessing: false,
       name: "foo",
     });
   when(ruleOne.canScheduleTask)
@@ -190,6 +212,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({
       result: "failed",
       message: "Failed for reason",
+      stopProcessing: false,
       name: "foo",
     });
 
@@ -199,12 +222,14 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskOne).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskTwo).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask)
     .calledWith(dayFour, taskThree)
@@ -212,26 +237,31 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskSix).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskSeven).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFour, taskEight).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
 
@@ -244,21 +274,25 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskTwo).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskThree).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -268,12 +302,14 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskSeven).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(dayFive, taskEight).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
 
   const mockDaySix = mock<Day>();
@@ -282,6 +318,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(daySix, taskOne).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -289,12 +326,14 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask).calledWith(daySix, taskThree).mockReturnValue({
     result: "failed",
+    stopProcessing: false,
     message: "Failed for reason",
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(daySix, taskFour).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -302,16 +341,19 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask).calledWith(daySix, taskSix).mockReturnValue({
     result: "failed",
+    stopProcessing: false,
     message: "Failed for reason",
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(daySix, taskSeven).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(daySix, taskEight).mockReturnValue({
     result: "failed",
+    stopProcessing: false,
     message: "Failed for reason",
     name: "foo",
   });
@@ -323,17 +365,20 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask).calledWith(daySeven, taskTwo).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
     name: "foo",
+    stopProcessing: false,
   });
   when(ruleOne.canScheduleTask)
     .calledWith(daySeven, taskThree)
     .mockReturnValue({
       result: "failed",
       message: "Failed for reason",
+      stopProcessing: false,
       name: "foo",
     });
   when(ruleOne.canScheduleTask)
@@ -342,11 +387,13 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
   when(ruleOne.canScheduleTask).calledWith(daySeven, taskFive).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask).calledWith(daySeven, taskSix).mockReturnValue({
     result: "failed",
     message: "Failed for reason",
+    stopProcessing: false,
     name: "foo",
   });
   when(ruleOne.canScheduleTask)
@@ -356,6 +403,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .calledWith(daySeven, taskEight)
     .mockReturnValue({
       result: "failed",
+      stopProcessing: false,
       message: "Failed for reason",
       name: "foo",
     });
@@ -373,6 +421,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .calledWith(dayEight, taskThree)
     .mockReturnValue({
       result: "failed",
+      stopProcessing: false,
       message: "Failed for reason",
       name: "foo",
     });
@@ -384,6 +433,7 @@ test("allocate tasks continues to try scheduling unto all the tasks are exhauste
     .mockReturnValue({ result: "success", name: "foo" });
   when(ruleOne.canScheduleTask).calledWith(dayEight, taskSix).mockReturnValue({
     result: "failed",
+    stopProcessing: false,
     message: "Failed for reason",
     name: "foo",
   });

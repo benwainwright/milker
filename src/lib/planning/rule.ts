@@ -8,6 +8,7 @@ interface RuleSuccess<N extends string> {
 
 interface RuleFailed<N extends string> {
   result: "failed";
+  stopProcessing: boolean;
   message: string;
   name: N;
 }

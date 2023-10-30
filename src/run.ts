@@ -34,11 +34,15 @@ const run = async () => {
 
   const result = engine.allocateTasks(
     tasks.flatMap((task) => {
-      console.log("one");
       return task.tasks;
     }),
   );
-  console.log(result);
+
+  console.log(
+    engine.days.map((day) =>
+      day.scheduledTasks.map((task) => task.parent.name),
+    ),
+  );
 };
 
 run().catch((error) => console.log(error));

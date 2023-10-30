@@ -46,7 +46,6 @@ export class TaskSeries {
       }
       return Object.prototype.hasOwnProperty.call(data, "task");
     };
-    console.log({ data: this.data });
     if (isRawTask(this.data)) {
       // TODO test to test parent linking
       return this.data.task?.map((task) => new Task(task, this)) ?? [];

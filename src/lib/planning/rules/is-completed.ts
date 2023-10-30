@@ -1,6 +1,6 @@
-import { PlanningRule } from "../rule";
-
 const name = "is-completed";
+
+import { PlanningRule } from "../rule";
 
 export const isCompleted: PlanningRule<"is-completed"> = {
   name,
@@ -17,6 +17,7 @@ export const isCompleted: PlanningRule<"is-completed"> = {
     return {
       name,
       result: "failed",
+      stopProcessing: true,
       message: "task not scheduled as it was completed",
     };
   },

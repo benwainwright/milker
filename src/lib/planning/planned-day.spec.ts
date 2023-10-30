@@ -7,6 +7,32 @@ import { Task } from "../rtm/task";
 import { when } from "jest-when";
 import { vi } from "vitest";
 
+test("when there is any calendar entry on the day with a 'Work' entry, the day is marked as a workday", () => {
+  const theDate = DateTime.fromISO("2009-11-01T12:36:47Z");
+
+  const eventOne = mock<CalendarComponent>({ summary: "Something else" });
+  const eventTwo = mock<CalendarComponent>({ summary: "Work" });
+  const eventThree = mock<CalendarComponent>({ summary: "Food?" });
+
+  const events = [eventOne, eventTwo, eventThree];
+
+  const day = new PlannedDay({ day: theDate, events }, []);
+  expect(day.isWorkday).toEqual(true);
+});
+
+test("when there is no calendar entry on the day with a 'Work' entry, the day is not marked as a workday", () => {
+  const theDate = DateTime.fromISO("2009-11-01T12:36:47Z");
+
+  const eventOne = mock<CalendarComponent>({ summary: "Something else" });
+  const eventTwo = mock<CalendarComponent>({ summary: "fish" });
+  const eventThree = mock<CalendarComponent>({ summary: "Food?" });
+
+  const events = [eventOne, eventTwo, eventThree];
+
+  const day = new PlannedDay({ day: theDate, events }, []);
+  expect(day.isWorkday).toEqual(false);
+});
+
 test("when scheduledTask list is empty and a schedule attempt is made, day.scheduledTasks returns false and list has task added to it if none of the rules fail", () => {
   const theDate = DateTime.fromISO("2009-11-01T12:36:47Z");
 
@@ -74,6 +100,7 @@ test("when scheduledTask list is empty and a schedule attempt is made, day.sched
     result: "failed",
     message: "Failed for reason",
     name: "test-two",
+    stopProcessing: false,
   });
 
   const result = day.tryToScheduleTask(proposedTask);
