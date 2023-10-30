@@ -38,6 +38,8 @@ const run = async () => {
     }),
   );
 
+  console.log({ days: days.length });
+
   console.log(
     engine.days.map((day) =>
       day.scheduledTasks.map((task) => task.parent.name),

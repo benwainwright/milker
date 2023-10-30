@@ -15,7 +15,12 @@ beforeEach(() => {
 });
 
 test.todo(
-  "planning engine doesnt ignore days that weren't in the original day list",
+  "planning engine fills gaps in between day objects with new day objects",
+  () => {},
+);
+
+test.todo(
+  "planning engine continues two create day objects into the future until all the tasks are consumed",
   () => {},
 );
 
