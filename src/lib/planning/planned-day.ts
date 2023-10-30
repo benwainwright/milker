@@ -1,14 +1,17 @@
 import { PlanningRule } from "./rule";
 import { Task } from "../rtm/task";
 import { Day } from "../../types/day";
+import { DateTime } from "luxon";
+import { CalendarComponent } from "ical";
 
-const WORK_STRING = "Work";
+const DAY_EVENT_QUALIFYING_LENGTH = 3;
+const EVENING_EVENT_QUALIFYING_LENGTH = 2;
 
 type DayType =
-  | "WorkDayWithFreeEvening"
-  | "WorkdayWithEveningPlans"
-  | "FreeWeekendDay"
-  | "BusyWeekendDay";
+  | "FullDay"
+  | "BusyDayWithFreeEvening"
+  | "FreeDay"
+  | "FreeDayWithBusyEvening";
 
 export class PlannedDay {
   private currentlyScheduledTasks: Task[] = [];
@@ -21,8 +24,85 @@ export class PlannedDay {
     return this.rawDay.day > other.rawDay.day;
   }
 
-  public get isWorkday(): boolean {
-    return this.rawDay.events.some((day) => day.summary?.includes(WORK_STRING));
+  private static eventQualifiesSpecificInterval(
+    event: CalendarComponent,
+    start: DateTime,
+    end: DateTime,
+    qualifyingLength: number,
+  ): boolean {
+    if (!event.start || !event.end) {
+      return false;
+    }
+    const begin = DateTime.fromMillis(event.start.getTime());
+    const finish = DateTime.fromMillis(event.end.getTime());
+
+    const length = Math.abs(
+      begin.diff(finish, ["hours", "minutes"]).toObject().hours ?? 0,
+    );
+
+    const afterStart = begin >= start;
+    const beforeEnd = finish <= end;
+    const longEnough = length >= qualifyingLength;
+
+    return afterStart && beforeEnd && longEnough;
+  }
+
+  public get dayType(): DayType {
+    const nineAmToday = DateTime.fromMillis(this.rawDay.day.toMillis())
+      .startOf("day")
+      .set({
+        hour: 9,
+        minute: 0,
+        millisecond: 0,
+      });
+
+    const sixPmToday = DateTime.fromMillis(this.rawDay.day.toMillis())
+      .startOf("day")
+      .set({
+        hour: 18,
+        minute: 0,
+        millisecond: 0,
+      });
+
+    const hasQualifyingDaytimeEvent = this.rawDay.events.some((event) =>
+      PlannedDay.eventQualifiesSpecificInterval(
+        event,
+        nineAmToday,
+        sixPmToday,
+        DAY_EVENT_QUALIFYING_LENGTH,
+      ),
+    );
+
+    const midnight = DateTime.fromMillis(this.rawDay.day.toMillis())
+      .startOf("day")
+      .set({
+        hour: 23,
+        minute: 59,
+        millisecond: 59,
+      });
+
+    const hasQualifyingEveningEvent = this.rawDay.events.some((event) =>
+      PlannedDay.eventQualifiesSpecificInterval(
+        event,
+        sixPmToday,
+        midnight,
+        EVENING_EVENT_QUALIFYING_LENGTH,
+      ),
+    );
+
+    if (hasQualifyingDaytimeEvent && hasQualifyingEveningEvent) {
+      return "FullDay";
+    }
+
+    if (hasQualifyingDaytimeEvent && !hasQualifyingEveningEvent) {
+      return "BusyDayWithFreeEvening";
+    }
+
+    if (!hasQualifyingDaytimeEvent && hasQualifyingEveningEvent) {
+      return "FreeDayWithBusyEvening";
+    }
+
+    return "FreeDay";
   }
 
   public tryToScheduleTask(task: Task): boolean {
