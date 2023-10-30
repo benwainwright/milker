@@ -105,6 +105,17 @@ export class PlannedDay {
     return "FreeDay";
   }
 
+  public toTable(): string[][] {
+    return [
+      ["Date", this.rawDay.day.toLocaleString()],
+      ["Tasks Count", String(this.scheduledTasks.length)],
+      [
+        "Tasks",
+        this.scheduledTasks.map((task) => `- ${task.parent.name}`).join("\n"),
+      ],
+    ];
+  }
+
   public tryToScheduleTask(task: Task): boolean {
     const ruleFailureFound = this.rules.some((rule) => {
       const { result } = rule.canScheduleTask(this, task);

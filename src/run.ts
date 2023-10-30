@@ -6,6 +6,7 @@ import { FlatFileJsonStorage } from "./lib/rtm/flat-file-json-storage";
 import { getGroupedEventsFromIcal } from "./lib/calendar/get-grouped-events-from-ical";
 import { PlanningEngine } from "./lib/planning/planning-engine";
 import { PlannedDay } from "./lib/planning/planned-day";
+import { table } from "table";
 import { initialisePlanningRules } from "./lib/core/initialise-rules";
 
 const run = async () => {
@@ -38,13 +39,7 @@ const run = async () => {
     }),
   );
 
-  console.log({ days: days.length });
-
-  console.log(
-    engine.days.map((day) =>
-      day.scheduledTasks.map((task) => task.parent.name),
-    ),
-  );
+  engine.days.forEach((day) => console.log(table(day.toTable())));
 };
 
 run().catch((error) => console.log(error));
