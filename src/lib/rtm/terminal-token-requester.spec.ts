@@ -88,7 +88,6 @@ test("terminal token requester calls open, waits for user input, and then return
     .mockResolvedValue({ value: "whatever" });
 
   const actualToken = await requester.requestToken(apiKey, apiSecret, perms);
-
   expect(vi.mocked(open)).toHaveBeenCalledWith(authUrl);
   expect(actualToken).toEqual(token);
 });

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { RtmTask } from "rtm-js";
 import { TaskSeries } from "./task-series";
-import { ITask } from "../../types/task";
+import { ITask } from "../../types/ITask";
 
 const priorityMapping = {
   1: "High",

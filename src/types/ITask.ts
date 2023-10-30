@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
-import { TaskPriority } from "../lib/rtm/task";
+import { TaskPriority } from "./task-priority";
+import { ITaskSeries } from "./ITaskSeries";
 
 export interface ITask {
   readonly completed: DateTime | undefined;
@@ -10,4 +11,5 @@ export interface ITask {
   readonly estimate: string | undefined;
   readonly postponed: number;
   readonly priority: TaskPriority | undefined;
+  readonly parent: ITaskSeries;
 }

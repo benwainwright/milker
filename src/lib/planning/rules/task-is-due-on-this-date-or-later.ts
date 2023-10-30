@@ -11,12 +11,12 @@ export const taskIsDueOnThisDateOrLater: PlanningRule<"task-is-due-on-this-date-
           name,
           result: "failed",
           stopProcessing: false,
-          message: "due was undefined",
+          message: "task due date is undefined",
         };
       }
 
       const result =
-        proposedTask.due.startOf("day") >= day.rawDay.day.startOf("day");
+        proposedTask.due.startOf("day") <= day.rawDay.day.startOf("day");
 
       if (result) {
         return {
@@ -28,8 +28,8 @@ export const taskIsDueOnThisDateOrLater: PlanningRule<"task-is-due-on-this-date-
       return {
         name,
         result: "failed",
-        stopProcessing: true,
-        message: "Tasks due date was in the past",
+        stopProcessing: false,
+        message: "task is due later than the attempted day",
       };
     },
   };

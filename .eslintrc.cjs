@@ -13,4 +13,12 @@ module.exports = {
   rules: {
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
   },
+  overrides: [
+    {
+      files: ["**.spec.ts"],
+      rules: {
+        "@typescript-eslint/no-unsafe-assignment": "off",
+      },
+    },
+  ],
 };

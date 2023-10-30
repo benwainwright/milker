@@ -16,7 +16,7 @@ export const noTasksOnFullDay: PlanningRule<"no-tasks-on-full-day"> = {
       name,
       result: "failed",
       stopProcessing: false,
-      message: "This day is full, no tasks allowed",
+      message: "cannot be scheduled on a full day",
     };
   },
 };

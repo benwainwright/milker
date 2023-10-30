@@ -1,20 +1,15 @@
 import { PlanningRule } from "./rule";
-import { Task } from "../rtm/task";
 import { Day } from "../../types/day";
 import { DateTime } from "luxon";
 import { CalendarComponent } from "ical";
+import { DayType } from "../../types/day-type";
+import { ITask } from "../../types/ITask";
 
 const DAY_EVENT_QUALIFYING_LENGTH = 3;
 const EVENING_EVENT_QUALIFYING_LENGTH = 2;
 
-type DayType =
-  | "FullDay"
-  | "BusyDayWithFreeEvening"
-  | "FreeDay"
-  | "FreeDayWithBusyEvening";
-
 export class PlannedDay {
-  private currentlyScheduledTasks: Task[] = [];
+  private currentlyScheduledTasks: ITask[] = [];
   constructor(
     public readonly rawDay: Day,
     private rules: PlanningRule<string>[],
@@ -139,7 +134,7 @@ export class PlannedDay {
     ];
   }
 
-  public tryToScheduleTask(task: Task): boolean {
+  public tryToScheduleTask(task: ITask): boolean {
     const ruleFailureFound = this.rules.some((rule) => {
       const { result } = rule.canScheduleTask(this, task);
       return result === "failed";
@@ -152,7 +147,7 @@ export class PlannedDay {
     return false;
   }
 
-  public get scheduledTasks(): Task[] {
+  public get scheduledTasks(): ITask[] {
     return this.currentlyScheduledTasks;
   }
 }

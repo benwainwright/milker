@@ -14,14 +14,14 @@ beforeEach(() => {
 
 // TODO make the tests consistent with the non-optional nature of some of these props
 test.each`
-  oldKey           | newKey           | rawValue                  | value
-  ${"id"}          | ${"id"}          | ${`1`}                    | ${"1"}
-  ${"created"}     | ${"created"}     | ${`2012-02-12T16:45:35Z`} | ${DateTime.fromISO("2012-02-12T16:45:35Z")}
-  ${"name"}        | ${"name"}        | ${`foo`}                  | ${"foo"}
-  ${"source"}      | ${"source"}      | ${`js`}                   | ${"js"}
-  ${"location_id"} | ${"location_id"} | ${`1234`}                 | ${"1234"}
-  ${"location_id"} | ${"location_id"} | ${undefined}              | ${undefined}
-  ${"location_id"} | ${"location_id"} | ${""}                     | ${undefined}
+  oldKey           | newKey          | rawValue                  | value
+  ${"id"}          | ${"id"}         | ${`1`}                    | ${"1"}
+  ${"created"}     | ${"created"}    | ${`2012-02-12T16:45:35Z`} | ${DateTime.fromISO("2012-02-12T16:45:35Z")}
+  ${"name"}        | ${"name"}       | ${`foo`}                  | ${"foo"}
+  ${"source"}      | ${"source"}     | ${`js`}                   | ${"js"}
+  ${"location_id"} | ${"locationId"} | ${`1234`}                 | ${"1234"}
+  ${"location_id"} | ${"locationId"} | ${undefined}              | ${undefined}
+  ${"location_id"} | ${"locationId"} | ${""}                     | ${undefined}
 `(
   "maps $oldKey from rawdata with raw value $rawValue to key $newKey value $value",
   ({ oldKey, newKey, rawValue, value }) => {
@@ -35,16 +35,16 @@ test.each`
 );
 
 test.each`
-  key              | value
-  ${"id"}          | ${"1"}
-  ${"created"}     | ${DateTime.fromISO("2012-02-12T16:45:35Z")}
-  ${"name"}        | ${"foo"}
-  ${"source"}      | ${"js"}
-  ${"location_id"} | ${"1234"}
-  ${"location_id"} | ${undefined}
-  ${"location_id"} | ${undefined}
+  key             | value
+  ${"id"}         | ${"1"}
+  ${"created"}    | ${DateTime.fromISO("2012-02-12T16:45:35Z")}
+  ${"name"}       | ${"foo"}
+  ${"source"}     | ${"js"}
+  ${"locationId"} | ${"1234"}
+  ${"locationId"} | ${undefined}
+  ${"locationId"} | ${undefined}
 `(
-  "correctly populates processed data and exposes it under key $newKey",
+  "correctly populates processed data with value $value and exposes it under key $key",
   ({ key, value }) => {
     const rawTask = mock<TaskSeriesParams>({
       id: "1",

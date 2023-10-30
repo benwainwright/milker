@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
 import { RtmTaskSeries } from "rtm-js";
+import { ITaskSeries } from "../../types/ITaskSeries";
+import { ITask } from "../../types/ITask";
 import { Task } from "./task";
 
 export interface TaskSeriesParams {
@@ -7,11 +9,11 @@ export interface TaskSeriesParams {
   created: DateTime;
   name: string;
   source: string;
-  location_id?: string;
-  tasks: Task[];
+  locationId?: string;
+  tasks: ITask[];
 }
 
-export class TaskSeries {
+export class TaskSeries implements ITaskSeries {
   constructor(private data: RtmTaskSeries | TaskSeriesParams) {}
 
   public get id(): string {
@@ -32,14 +34,21 @@ export class TaskSeries {
     return this.data.source;
   }
 
-  public get location_id(): string | undefined {
-    if (!this.data.location_id) {
-      return undefined;
+  public get locationId(): string | undefined {
+    if ("location_id" in this.data) {
+      if (!this.data.location_id) {
+        return undefined;
+      }
+      return this.data.location_id;
+    } else {
+      if (!this.data.locationId) {
+        return undefined;
+      }
+      return this.data.locationId;
     }
-    return this.data.location_id;
   }
 
-  public get tasks(): Task[] {
+  public get tasks(): ITask[] {
     const isRawTask = (data: typeof this.data): data is RtmTaskSeries => {
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!data) {
