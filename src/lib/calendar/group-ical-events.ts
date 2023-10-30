@@ -27,6 +27,11 @@ export const groupIcalEvents = (calendar: {
   }, {});
 
   return Object.values(dayTable)
+    .filter(
+      (events) =>
+        DateTime.fromJSDate(events[0].start!) >=
+        DateTime.fromMillis(Date.now()),
+    )
     .map((events) => ({
       day: DateTime.fromJSDate(events[0].start!).startOf("day"),
       events,

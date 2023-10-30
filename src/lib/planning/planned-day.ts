@@ -24,6 +24,10 @@ export class PlannedDay {
     return this.rawDay.day > other.rawDay.day;
   }
 
+  public newWithRules(rawDay: Day) {
+    return new PlannedDay(rawDay, this.rules);
+  }
+
   private static eventQualifiesSpecificInterval(
     event: CalendarComponent,
     start: DateTime,

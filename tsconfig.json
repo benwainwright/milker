@@ -15,6 +15,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "$schema": "https://json.schemastore.org/tsconfig",
-  "files": ["src/package-types/rtm-js.d.ts"],
+  "files": ["src/package-types/rtm-js.d.ts", "vitest.config.ts"],
   "include": ["src/**/*.ts"]
 }
