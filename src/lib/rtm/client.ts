@@ -2,7 +2,6 @@ import RememberTheMilk, { RememberTheMilkApi } from "rtm-js";
 import { AppStorage, TokenRequester } from "../../types/storage";
 import { rtmGetPromisified } from "./rtm-get-promisified";
 import { TaskSeries } from "./task-series";
-import { Task } from "./task";
 
 export const STORAGE_KEY = "milk-manager-token-storage";
 

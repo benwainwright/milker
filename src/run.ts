@@ -32,7 +32,7 @@ const run = async () => {
 
   console.log("Reallocating tasks");
 
-  const result = engine.allocateTasks(
+  engine.allocateTasks(
     tasks.flatMap((task) => {
       return task.tasks;
     }),
