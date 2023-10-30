@@ -8,9 +8,6 @@ const FIXTURES_DIR = path.join(__dirname, "..", "..", "..", "fixtures");
 
 beforeEach(() => {
   vi.useFakeTimers();
-
-  const today = DateTime.fromObject({ year: 2023, month: 9, day: 4 });
-  vi.setSystemTime(today.toJSDate());
 });
 
 afterEach(() => {
@@ -19,6 +16,8 @@ afterEach(() => {
 
 describe("group ical events", () => {
   it("Creates the right number of groups", () => {
+    const today = DateTime.fromObject({ year: 2023, month: 9, day: 4 });
+    vi.setSystemTime(today.toJSDate());
     const parsed = ical.parseFile(
       path.join(FIXTURES_DIR, "simple-calendar.ics"),
     );
@@ -28,6 +27,8 @@ describe("group ical events", () => {
   });
 
   it("Creates the right date buckets", () => {
+    const today = DateTime.fromObject({ year: 2023, month: 9, day: 4 });
+    vi.setSystemTime(today.toJSDate());
     const parsed = ical.parseFile(
       path.join(FIXTURES_DIR, "simple-calendar.ics"),
     );
@@ -38,6 +39,8 @@ describe("group ical events", () => {
   });
 
   it("Puts the right events in the right buckets", () => {
+    const today = DateTime.fromObject({ year: 2023, month: 9, day: 4 });
+    vi.setSystemTime(today.toJSDate());
     const parsed = ical.parseFile(
       path.join(FIXTURES_DIR, "simple-calendar.ics"),
     );
@@ -46,5 +49,16 @@ describe("group ical events", () => {
     expect(result[0].events[0].summary).toEqual("TestEvent1");
     expect(result[0].events[1].summary).toEqual("TestEvent2");
     expect(result[1].events[0].summary).toEqual("Event3");
+  });
+
+  it("filters out events from the past", () => {
+    const today = DateTime.fromObject({ year: 2023, month: 10, day: 30 });
+    vi.setSystemTime(today.toJSDate());
+    const parsed = ical.parseFile(
+      path.join(FIXTURES_DIR, "simple-calendar.ics"),
+    );
+
+    const result = groupIcalEvents(parsed);
+    expect(result).toHaveLength(0);
   });
 });
