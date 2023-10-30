@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import { RtmTask } from "rtm-js";
 import { TaskSeries } from "./task-series";
+import { ITask } from "../../types/task";
 
 const priorityMapping = {
   1: "High",
@@ -23,7 +24,7 @@ export interface TaskParams {
   priority?: TaskPriority;
 }
 
-export class Task {
+export class Task implements ITask {
   constructor(
     private data: RtmTask | TaskParams,
     public readonly parent: TaskSeries,
