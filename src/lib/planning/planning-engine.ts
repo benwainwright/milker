@@ -43,7 +43,7 @@ export class PlanningEngine {
     return { unscheduledTasks };
   }
 
-  public static makeTasklistReducerForDay(day: PlannedDay) {
+  private static makeTasklistReducerForDay(day: PlannedDay) {
     return (remainingTasks: Task[], currentTask: Task) => {
       if (day.tryToScheduleTask(currentTask)) {
         return remainingTasks;
