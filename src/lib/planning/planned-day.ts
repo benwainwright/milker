@@ -108,6 +108,25 @@ export class PlannedDay {
   public toTable(): string[][] {
     return [
       ["Date", this.rawDay.day.toLocaleString()],
+      ["Day Type", this.dayType],
+      [
+        "Events",
+        this.rawDay.events
+          .map((event) => {
+            if (!event.start || !event.end) {
+              return [];
+            }
+
+            const start = DateTime.fromJSDate(event.start).toLocaleString(
+              DateTime.TIME_SIMPLE,
+            );
+            const end = DateTime.fromJSDate(event.end).toLocaleString(
+              DateTime.TIME_SIMPLE,
+            );
+            return `- ${start} - ${end} (${event.summary})`;
+          })
+          .join("\n"),
+      ],
       ["Tasks Count", String(this.scheduledTasks.length)],
       [
         "Tasks",

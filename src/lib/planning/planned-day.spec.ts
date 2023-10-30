@@ -7,6 +7,8 @@ import { Task } from "../rtm/task";
 import { when } from "jest-when";
 import { vi } from "vitest";
 
+test.todo("handle multiple entries that add up to qualifying period");
+
 test("When there is an entry during the day, but nothing in the evening, mark as a BusydayWithFreeEvening", () => {
   const theDate = DateTime.fromISO("2009-01-12T12:36:47Z");
 
