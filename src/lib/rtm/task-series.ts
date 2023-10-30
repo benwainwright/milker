@@ -41,6 +41,7 @@ export class TaskSeries {
 
   public get tasks(): Task[] {
     const isRawTask = (data: typeof this.data): data is RtmTaskSeries => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!data) {
         return false;
       }

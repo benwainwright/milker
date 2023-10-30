@@ -29,10 +29,12 @@ export const groupIcalEvents = (calendar: {
   return Object.values(dayTable)
     .filter(
       (events) =>
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         DateTime.fromJSDate(events[0].start!) >=
         DateTime.fromMillis(Date.now()),
     )
     .map((events) => ({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       day: DateTime.fromJSDate(events[0].start!).startOf("day"),
       events,
     }))

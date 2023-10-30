@@ -2,8 +2,20 @@ import ical from "ical";
 import { DateTime } from "luxon";
 import path from "path";
 import { groupIcalEvents } from "./group-ical-events";
+import { vi } from "vitest";
 
 const FIXTURES_DIR = path.join(__dirname, "..", "..", "..", "fixtures");
+
+beforeEach(() => {
+  vi.useFakeTimers();
+
+  const today = DateTime.fromObject({ year: 2023, month: 9, day: 4 });
+  vi.setSystemTime(today.toJSDate());
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe("group ical events", () => {
   it("Creates the right number of groups", () => {
