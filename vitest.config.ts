@@ -9,10 +9,10 @@ export default defineConfig({
       provider: "istanbul",
       cleanOnRerun: true,
       thresholdAutoUpdate: true,
-      lines: 96.99,
+      lines: 97.42,
       branches: 90,
-      functions: 98.59,
-      statements: 97,
+      functions: 100,
+      statements: 97.43,
     },
   },
 });

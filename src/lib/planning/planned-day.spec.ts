@@ -11,6 +11,50 @@ import { ITaskSeries } from "../../types/ITaskSeries";
 
 test.todo("handle multiple entries that add up to qualifying period");
 
+test("PlannedDay isAfter - should return true if the day is after the other day", () => {
+  const baseDay = DateTime.fromObject({ year: 2023, month: 11, day: 5 });
+  const dayOne = new PlannedDay(
+    { day: baseDay.plus({ days: 1 }), events: [] },
+    [],
+  );
+  const dayTwo = new PlannedDay({ day: baseDay, events: [] }, []);
+
+  expect(dayOne.isAfter(dayTwo)).toBe(true);
+});
+
+test("PlannedDay isAfter - should return false if both days are the same", () => {
+  const baseDay = DateTime.fromObject({ year: 2023, month: 11, day: 5 });
+  const dayOne = new PlannedDay({ day: baseDay, events: [] }, []);
+  const dayTwo = new PlannedDay({ day: baseDay, events: [] }, []);
+
+  expect(dayOne.isAfter(dayTwo)).toBe(false);
+});
+
+test("PlannedDay isAfter - should return false if the day is before the other day", () => {
+  const baseDay = DateTime.fromObject({ year: 2023, month: 11, day: 5 });
+  const dayOne = new PlannedDay(
+    { day: baseDay.minus({ days: 1 }), events: [] },
+    [],
+  );
+  const dayTwo = new PlannedDay({ day: baseDay, events: [] }, []);
+
+  expect(dayOne.isAfter(dayTwo)).toBe(false);
+});
+
+test("PlannedDay isAfter - should handle different times on the same day correctly", () => {
+  const baseDay = DateTime.fromObject({ year: 2023, month: 11, day: 5 });
+  const dayOne = new PlannedDay(
+    { day: baseDay.set({ hour: 10 }), events: [] },
+    [],
+  );
+  const dayTwo = new PlannedDay(
+    { day: baseDay.set({ hour: 8 }), events: [] },
+    [],
+  );
+
+  expect(dayOne.isAfter(dayTwo)).toBe(true);
+});
+
 test("When there is an entry during the day, but nothing in the evening, mark as a BusydayWithFreeEvening", () => {
   const theDate = DateTime.fromISO("2009-01-12T12:36:47Z");
 
