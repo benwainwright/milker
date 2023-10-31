@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { AppStorage } from "../../types/storage";
 import { dirname } from "path";
+import { jsonParse } from "../core/json-parse";
 const JSON_INDENT_SPACES = 2;
 export class FlatFileJsonStorage implements AppStorage {
   public constructor(private path: string) {}
@@ -9,7 +10,7 @@ export class FlatFileJsonStorage implements AppStorage {
     path: string,
   ): Promise<Record<string, string>> {
     try {
-      return JSON.parse(await readFile(path, "utf8"));
+      return jsonParse(await readFile(path, "utf8"));
     } catch {
       return {};
     }
