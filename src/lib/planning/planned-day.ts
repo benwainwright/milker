@@ -116,12 +116,10 @@ export class PlannedDay {
               return [];
             }
 
-            const start = DateTime.fromMillis(
-              event.start.getTime(),
-            ).toLocaleString(DateTime.TIME_SIMPLE);
-            const end = DateTime.fromMillis(event.end.getTime()).toLocaleString(
-              DateTime.TIME_SIMPLE,
+            const start = DateTime.fromMillis(event.start.getTime()).toFormat(
+              "T",
             );
+            const end = DateTime.fromMillis(event.end.getTime()).toFormat("T");
             return `• ${event.summary} (${start} - ${end})`;
           })
           .join("\n"),
