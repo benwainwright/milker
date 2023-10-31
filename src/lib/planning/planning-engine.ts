@@ -23,7 +23,7 @@ export class PlanningEngine {
   }
 
   public allocateTasks(tasks: ITask[]): PlanningResult {
-    const sortedTasks = tasks.slice().toSorted((a, b) => {
+    const sortedTasks = tasks.slice().sort((a, b) => {
       if (!a.due || !b.due) {
         return 0;
       }
