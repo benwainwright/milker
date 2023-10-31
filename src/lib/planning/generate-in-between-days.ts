@@ -9,10 +9,9 @@ export const generateInBetweenDays = (rawDays: PlannedDay[]) => {
     events: [],
   });
 
-  const daysIncludingToday =
-    rawDays[0].rawDay.day.startOf("day") === today
-      ? rawDays
-      : [todayWrapped, ...rawDays];
+  const daysIncludingToday = rawDays[0].rawDay.day.hasSame(today, "day")
+    ? rawDays
+    : [todayWrapped, ...rawDays];
 
   const everythingBeforeFinalDay = daysIncludingToday.flatMap(
     (day, index, array) => {
