@@ -106,7 +106,7 @@ export class PlannedDay {
 
   public toTable(): string[][] {
     return [
-      ["Date", this.rawDay.day.toLocaleString()],
+      ["Date", this.rawDay.day.toLocaleString(DateTime.DATE_FULL)],
       ["Day Type", this.dayType],
       [
         "Events",

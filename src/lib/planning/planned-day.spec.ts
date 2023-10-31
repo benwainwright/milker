@@ -212,7 +212,7 @@ test("toTable returns the correct table representation of the day's schedule", (
   day.scheduledTasks.push(task1, task2);
 
   const expectedTable = [
-    ["Date", "12/01/2009"],
+    ["Date", "12 January 2009"],
     ["Day Type", "BusyDayWithFreeEvening"],
     [
       "Events",
