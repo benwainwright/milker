@@ -6,6 +6,6 @@ export interface IPlannedDay {
   readonly rawDay: Day;
   readonly dayType: DayType;
   readonly toTable: () => string[][];
-  readonly tryToScheduleTask: (task: ITask[]) => boolean;
+  readonly tryToScheduleTask: (task: ITask) => boolean;
   readonly scheduledTasks: ITask[];
 }

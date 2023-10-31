@@ -116,20 +116,20 @@ export class PlannedDay {
               return [];
             }
 
-            const start = DateTime.fromJSDate(event.start).toLocaleString(
+            const start = DateTime.fromMillis(
+              event.start.getTime(),
+            ).toLocaleString(DateTime.TIME_SIMPLE);
+            const end = DateTime.fromMillis(event.end.getTime()).toLocaleString(
               DateTime.TIME_SIMPLE,
             );
-            const end = DateTime.fromJSDate(event.end).toLocaleString(
-              DateTime.TIME_SIMPLE,
-            );
-            return `- ${start} - ${end} (${event.summary})`;
+            return `• ${event.summary} (${start} - ${end})`;
           })
           .join("\n"),
       ],
-      ["Tasks Count", String(this.scheduledTasks.length)],
+      ["Task Count", String(this.scheduledTasks.length)],
       [
         "Tasks",
-        this.scheduledTasks.map((task) => `- ${task.parent.name}`).join("\n"),
+        this.scheduledTasks.map((task) => `• ${task.parent.name}`).join("\n"),
       ],
     ];
   }
