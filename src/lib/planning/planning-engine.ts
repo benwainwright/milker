@@ -1,9 +1,9 @@
-import { Task } from "../rtm/task";
 import { PlannedDay } from "./planned-day";
 import { generateInBetweenDays } from "./generate-in-between-days";
+import { ITask } from "../../types/ITask";
 
 interface PlanningResult {
-  unscheduledTasks: Task[];
+  unscheduledTasks: ITask[];
 }
 
 export class PlanningEngine {
@@ -22,7 +22,7 @@ export class PlanningEngine {
     return this.generatedDays;
   }
 
-  public allocateTasks(tasks: Task[]): PlanningResult {
+  public allocateTasks(tasks: ITask[]): PlanningResult {
     const sortedTasks = tasks.slice().toSorted((a, b) => {
       if (!a.due || !b.due) {
         return 0;
@@ -30,9 +30,9 @@ export class PlanningEngine {
       return a.due > b.due ? 1 : -1;
     });
 
-    const unscheduledTasks = this.days.reduce<Task[]>(
+    const unscheduledTasks = this.days.reduce<ITask[]>(
       (unscheduledTasks, day) => {
-        return unscheduledTasks.reduce<Task[]>(
+        return unscheduledTasks.reduce<ITask[]>(
           PlanningEngine.makeTasklistReducerForDay(day),
           [],
         );
@@ -44,7 +44,7 @@ export class PlanningEngine {
   }
 
   private static makeTasklistReducerForDay(day: PlannedDay) {
-    return (remainingTasks: Task[], currentTask: Task) => {
+    return (remainingTasks: ITask[], currentTask: ITask) => {
       if (day.tryToScheduleTask(currentTask)) {
         return remainingTasks;
       }

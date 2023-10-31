@@ -39,7 +39,11 @@ const run = async () => {
     }),
   );
 
-  engine.initialDays.forEach((day) => { console.log(table(day.toTable())); });
+  engine.days.forEach((day) => {
+    console.log(table(day.toTable()));
+  });
 };
 
-run().catch((error) => { console.log(error); });
+run().catch((error) => {
+  console.log(error);
+});
